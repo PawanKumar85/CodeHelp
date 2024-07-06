@@ -4,11 +4,14 @@ import Navbar from "./Revision/Navbar";
 import Body from "./Revision/Body";
 import Loader from "./Revision/Loader";
 import { toast } from "react-toastify";
-import data from './Data/data.json'
+import data from "./Data/data.json";
 
 const App = () => {
   const [isMenu, setIsMenu] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(data[0].title);
+
+
   const url = "https://codehelp-apis.vercel.app/api/get-top-courses";
 
   const [course, setCourse] = useState([]);
@@ -29,12 +32,21 @@ const App = () => {
     fetchData();
   }, []);
 
-  
   return (
     <div className="bg-gray-300 min-h-screen">
-      <Navbar isMenu={isMenu} setIsMenu={setIsMenu} data={data}/>
-      <Filter isMenu={isMenu} setIsMenu={setIsMenu} data={data}/>
-      {loading ? <Loader /> : <Body courses={course} />}
+      <Navbar
+        isMenu={isMenu}
+        setIsMenu={setIsMenu}
+        data={data}
+        category={category}
+        setCategory={setCategory}
+      />
+      <Filter data={data} category={category} setCategory={setCategory} />
+      {loading ? (
+        <Loader />
+      ) : (
+        <Body courses={course} category={category} />
+      )}
     </div>
   );
 };

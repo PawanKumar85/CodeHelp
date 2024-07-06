@@ -1,11 +1,11 @@
 import { TiThMenu } from "react-icons/ti";
 import { ImCross } from "react-icons/im";
 
-const Navbar = ({ isMenu, setIsMenu, data }) => {
+const Navbar = ({ isMenu, setIsMenu, data, category, setCategory }) => {
   return (
     <div className="bg-blue-950 w-full p-4 shadow-xl">
       <nav className="max-w-[80%] flex justify-between   md:justify-center mx-auto">
-        <h1 className="text-2xl font-bold text-white cursor-pointer">
+        <h1 className="italic text-2xl font-bold text-white cursor-pointer">
           Top Courses
         </h1>
 
@@ -29,7 +29,10 @@ const Navbar = ({ isMenu, setIsMenu, data }) => {
             return (
               <li
                 key={item.id}
-                className="w-[100%] list-none text-white font-semibold border-b-2 border-gray-500 p-3 text-center"
+                className={`w-[100%] list-none  border-b-2 border-gray-500  p-3 text-center
+                  ${category === item.title ? "italic opacity-[110%] text-blue-950 bg-gray-200 shadow-xl font-bold duration-200 transition-all rounded-xl ease-out" : "text-white"}
+                  `}
+                onClick={() => setCategory(item.title)}
               >
                 {item.title}
               </li>

@@ -30,7 +30,9 @@ const Cards = ({ item }) => {
               {item.title}
             </h5>
             <div
-              className="p-3 rounded-full bg-gray-200 shadow-lg cursor-pointer"
+              className={`p-3 rounded-full bg-gray-200 shadow-lg cursor-pointer
+                ${like ? "shadow-red-200" : "shadow-yellow-300 "}
+                `}
               onClick={liked}
             >
               <FaHeart
